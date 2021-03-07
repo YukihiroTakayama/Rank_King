@@ -1,0 +1,5 @@
+FROM nginx
+ENV APP_ROOT rank_king
+RUN rm -f /etc/nginx/conf.d/*
+ADD nginx.conf /etc/nginx/rank_king.conf
+CMD /usr/sbin/nginx -g 'daemon off;' -c /etc/nginx/rank_king.conf

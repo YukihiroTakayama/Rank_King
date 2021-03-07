@@ -1,0 +1,43 @@
+version: '3'
+services:
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - '3306:3306'
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql:/var/lib/mysql
+  app:
+    build:
+      context: .
+      dockerfile: appDockerfile
+    command: bash -c "yarn install && bundle install && bundle exec rails db:create db:migrate && bundle exec rails server"
+    volumes:
+      - .:/rank_king
+      - public:/rank_king/public
+      - tmp:/rank_king/tmp
+      - log:/rank_king/log
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: $RAILS_ENV
+  web:
+    build:
+      context: .
+      dockerfile: webDockerfile
+    volumes:
+      - public:/rank_king/public
+      - tmp:/rank_king/tmp
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+volumes:
+  public:
+  tmp:
+  log:
+  mysql:
