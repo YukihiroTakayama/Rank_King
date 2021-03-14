@@ -12,7 +12,7 @@ class RanksController < ApplicationController
     hit_items = RakutenWebService::Ichiba::Item.search(keyword: params[:keyword])
     hit_item_genre_id = hit_items.first.genre.id
     @rakuten_ranks = RakutenWebService::Ichiba::Genre[hit_item_genre_id].ranking.to_a
-    hit_items = YahooShoppingWebService::Item.search(params[:keyword])
+    hit_items = YahooShoppingWebService::Item.search(query: params[:keyword])
     hit_item_category_id = hit_items.first.genreCategory.id
     @yahoo_shopping_ranks = YahooShoppingWebService::Category.ranking(hit_item_category_id)
     render :index

@@ -6,8 +6,8 @@ module YahooShoppingWebService
   class Item
     class << self
 
-      def search(keyword)
-        query = URI.encode_www_form(query: keyword)
+      def search(**params)
+        query = URI.encode_www_form(params)
         uri = URI("https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch?appid=#{appid}&" + query)
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true

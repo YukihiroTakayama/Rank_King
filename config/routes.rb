@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
   root 'ranks#index'
-  get 'ranks/search'
+  resources :ranks, only: [:index] do
+    get 'search', on: :collection
+  end
 end

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>Rank King</title>
+    <title>ランキングキング</title>
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -26,7 +26,7 @@
     <!-- <link type="text/css" rel="stylesheet" href="../stylesheets/nouislider.min.css"/> -->
 
     <!-- Font Awesome Icon -->
-    <%= stylesheet_link_tag 'font-awesome.min' %>
+    <%#= stylesheet_link_tag 'font-awesome.min' %>
     <!-- <link rel="stylesheet" href="../stylesheets/font-awesome.min.css"> -->
 
     <!-- Custom stlylesheet -->
@@ -62,7 +62,7 @@
             <div class="col-md-3">
               <div class="header-logo">
                 <a href="#" class="logo">
-                  <%= image_tag asset_path('logo.png') %>
+                  <h2 style="color: #ffffff;"><%= 'ランキングキング' %></h2>
                 </a>
               </div>
             </div>
@@ -79,17 +79,17 @@
             <div class="col-md-3 clearfix">
               <div class="header-ctn">
                 <!-- Wishlist -->
-                <div>
+                <!-- <div>
                   <a href="#">
                     <i class="fa fa-heart-o"></i>
                     <span>Your Wishlist</span>
                     <div class="qty">2</div>
                   </a>
-                </div>
+                </div> -->
                 <!-- /Wishlist -->
 
                 <!-- Cart -->
-                <div class="dropdown">
+                <!-- <div class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                     <i class="fa fa-shopping-cart"></i>
                     <span>Your Cart</span>
@@ -99,7 +99,7 @@
                     <div class="cart-list">
                       <div class="product-widget">
                         <div class="product-img">
-                          <%= image_tag asset_path('product01.png') %>
+                          <%#= image_tag asset_path('product01.png') %>
                         </div>
                         <div class="product-body">
                           <h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -110,7 +110,7 @@
 
                       <div class="product-widget">
                         <div class="product-img">
-                          <%= image_tag asset_path('product02.png') %>
+                          <%#= image_tag asset_path('product02.png') %>
                         </div>
                         <div class="product-body">
                           <h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -128,7 +128,7 @@
                       <a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <!-- /Cart -->
 
                 <!-- Menu Toogle -->
@@ -156,11 +156,11 @@
     <!-- FOOTER -->
     <footer id="footer">
       <!-- top footer -->
-      <div class="section">
+      <!-- <div class="section"> -->
         <!-- container -->
-        <div class="container">
+        <!-- <div class="container"> -->
           <!-- row -->
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-md-3 col-xs-6">
               <div class="footer">
                 <h3 class="footer-title">About Us</h3>
@@ -213,11 +213,11 @@
                 </ul>
               </div>
             </div>
-          </div>
+          </div> -->
           <!-- /row -->
-        </div>
+        <!-- </div> -->
         <!-- /container -->
-      </div>
+      <!-- </div> -->
       <!-- /top footer -->
 
       <!-- bottom footer -->
@@ -254,7 +254,7 @@
     <%= javascript_pack_tag 'bootstrap' %>
     <%= javascript_pack_tag 'slick' %>
     <%= javascript_pack_tag 'nouislider' %>
-    <%= javascript_pack_tag 'jquery_zoom' %>
+    <%#= javascript_pack_tag 'jquery_zoom' %>
     <%= javascript_pack_tag 'main' %>
 
     <!-- <script src="js/jquery.min.js"></script>
