@@ -220,7 +220,7 @@
         <% (0..2).each do |rank| %>
           <!-- product -->
           <div class="col-md-4 col-xs-6">
-            <a href="<%= @rakuten_ranks[rank]['affiliateUrl'] %>">
+            <a href="<%= @rakuten_ranks[rank]['affiliateUrl'] %>" target="_blank" rel="noopener noreferrer">
               <div class="product">
                 <div class="product-img">
                   <%= image_tag @rakuten_ranks[rank].medium_image_urls.first %>
@@ -248,7 +248,7 @@
           <!-- product -->
           <% yahoo_shopping_item = yahoo_shopping_item(@yahoo_shopping_ranks[rank].Name) %>
           <div class="col-md-4 col-xs-6">
-            <a href="<%= @yahoo_shopping_ranks[rank].Url %>">
+            <a href="<%= @yahoo_shopping_ranks[rank].Url %>" target="_blank" rel="noopener noreferrer">
               <div class="product">
                 <div class="product-img">
                   <%= image_tag @yahoo_shopping_ranks[rank].Image.Medium %>
@@ -257,9 +257,9 @@
                   </div>
                 </div>
                 <div class="product-body">
-                  <p class="product-category"><%= yahoo_shopping_item&.genreCategory&.name %></p>
-                  <h3 class="product-name"><%= yahoo_shopping_item&.name %></h3>
-                  <h4 class="product-price"><%= number_to_currency(yahoo_shopping_item&.price, precision: 0, unit: '') %>円</h4>
+                  <p class="product-category"><%= yahoo_shopping_item&.genreCategory&.name || '????' %></p>
+                  <h3 class="product-name"><%= @yahoo_shopping_ranks[rank].Name %></h3>
+                  <h4 class="product-price"><%= number_to_currency(yahoo_shopping_item&.price, precision: 0, unit: '').presence || '????' %>円</h4>
                   <div class="product-rating">
                     <i class='fa fa-star'></i>
                     <i class="fa fa-star"></i>
@@ -277,7 +277,7 @@
 
           <!-- product -->
           <div class="col-md-4 col-xs-6">
-            <a href="">
+            <a href="#" target="_blank" rel="noopener noreferrer">
               <div class="product">
                 <div class="product-img">
                   <%= image_tag 'http://placehold.jp/262x262.png' %>
