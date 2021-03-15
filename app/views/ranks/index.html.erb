@@ -223,7 +223,7 @@
             <a href="<%= @rakuten_ranks[rank]['affiliateUrl'] %>" target="_blank" rel="noopener noreferrer">
               <div class="product">
                 <div class="product-img">
-                  <%= image_tag @rakuten_ranks[rank].medium_image_urls.first %>
+                  <%= image_tag @rakuten_ranks[rank].medium_image_urls.first || 'http://placehold.jp/262x262.png' %>
                   <div class="product-label">
                     <span class="new"><%= rank + 1 %>位</span>
                   </div>
@@ -251,7 +251,7 @@
             <a href="<%= @yahoo_shopping_ranks[rank].Url %>" target="_blank" rel="noopener noreferrer">
               <div class="product">
                 <div class="product-img">
-                  <%= image_tag @yahoo_shopping_ranks[rank].Image.Medium %>
+                  <%= image_tag @yahoo_shopping_ranks[rank].Image.Medium || 'http://placehold.jp/262x262.png' %>
                   <div class="product-label">
                     <span class="new"><%= rank + 1 %>位</span>
                   </div>
