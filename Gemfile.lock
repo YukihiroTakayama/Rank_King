@@ -62,6 +62,8 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ancestry (3.2.1)
+      activerecord (>= 4.2.0)
     bindex (0.8.1)
     bootsnap (1.7.2)
       msgpack (~> 1.0)
@@ -162,6 +164,9 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    seed-fu (2.3.9)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -206,6 +211,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  ancestry
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
@@ -218,6 +224,7 @@ DEPENDENCIES
   rakuten_web_service
   rexml
   sass-rails (>= 6)
+  seed-fu
   selenium-webdriver
   spring
   turbolinks (~> 5)

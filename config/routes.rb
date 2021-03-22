@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :ranks, only: [:index] do
     get 'search', on: :collection
   end
+  resources :categories
 end

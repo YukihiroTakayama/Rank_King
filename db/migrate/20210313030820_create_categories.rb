@@ -1,6 +1,6 @@
-class CreateGenres < ActiveRecord::Migration[6.1]
+class CreateCategories < ActiveRecord::Migration[6.1]
   def change
-    create_table :genres do |t|
+    create_table :categories do |t|
       t.string :name
       t.integer :rakuten_id
       t.integer :yahoo_id
