@@ -1,0 +1,32 @@
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <%= form_with url: bulk_update_admin_categories_path, method: :patch do |f| %>
+        <table>
+          <thead>
+            <tr>
+              <td>カテゴリー名</td>
+              <td>楽天ID</td>
+              <td>ヤフーID</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @categories.each do |category| %>
+              <%= f.fields_for "categories[]", category do |ff| %>
+                <tr>
+                  <td><%= category.name %></td>
+                  <td><%= ff.text_field :rakuten_id, value: category.rakuten_id %></td>
+                  <td><%= ff.text_field :yahoo_id, value: category.yahoo_id %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <%= f.submit '更新' %>
+      <% end %>
+    </div>
+  </div>
+</div>
