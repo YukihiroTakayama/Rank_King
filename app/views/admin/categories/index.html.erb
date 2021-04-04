@@ -4,6 +4,11 @@
   <div class="container">
     <!-- row -->
     <div class="row">
+      <%= form_with url: import_admin_categories_path do |f| %>
+        <%= f.file_field :file %>
+        <%= submit_tag "インポート" %>
+      <% end %>
+      <%= button_to 'エクスポート', admin_categories_path(format: :csv), method: :get %>
       <%= form_with url: bulk_update_admin_categories_path, method: :patch do |f| %>
         <table>
           <thead>

@@ -1,6 +1,12 @@
 class Admin::CategoriesController < Admin::ApplicationController
   def index
     @categories = Category.all
+    respond_to do |format|
+      format.html do
+      end
+      format.csv do
+      end
+    end
   end
 
   def bulk_update
@@ -8,6 +14,11 @@ class Admin::CategoriesController < Admin::ApplicationController
       category = Category.find(id)
       category.update!(param)
     end
+    redirect_to action: :index
+  end
+
+  def import
+    Category.import!(params[:file])
     redirect_to action: :index
   end
 
