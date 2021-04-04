@@ -53,27 +53,19 @@
     <!-- row -->
     <div class="row">
       <!-- ASIDE -->
-      <div id="aside" class="col-md-9">
+      <div id="aside" class="col-md-3">
         <!-- aside Widget -->
         <div class="aside">
           <h3 class="aside-title">Categories</h3>
-
-          <div class="parent_category_list product" style="z-index: 2; position: absolute; margin-left: 0%; background-color: white">
-            <table class="parent_list">
-              <% @categories.each do |category| %>
-                <tr>
-                  <td><%= link_to link_to category.name, ranks_path(category_id: category.id), class: "parent_category", id: "#{category.id}" %></td>
-                </tr>
-              <% end %>
-            </table>
-          </div>
-          <div class="children_category_list product" style="z-index: 2; position: absolute; margin-left: 20.5%; background-color: white;">
-            <table class="children_list">
-            </table>
-          </div>
-          <div class="grand_children_category_list product" style="z-index: 2; position: absolute; margin-left: 41%; background-color: white">
-            <table class="grand_children_list table">
-            </table>
+          <div style="font-size: smaller; margin-bottom: 10px"><%= categories_breadcrumb(@category) %></div>
+          <div class="checkbox-filter">
+          <% @categories.each do |category| %>
+            <div class="input-checkbox">
+              <label for="category-1">
+                <div id="category_<%= category.id %>"><%= link_to category.name, search_category_path(category_id: category.id), style: params[:category_id] == category.id.to_s ? 'color: #D10024;' : '' %></div>
+              </label>
+            </div>
+          <% end %>
           </div>
         </div>
         <!-- /aside Widget -->
@@ -81,13 +73,13 @@
       <!-- /ASIDE -->
 
       <!-- STORE -->
-      <div id="store" class="col-md-9" style="z-index: 1; position: relative; margin-left: 24%; margin-top: -9%">
+      <div id="store" class="col-md-9">
         <!-- store top filter -->
         <div class="store-filter clearfix">
           <!-- SEARCH BAR -->
           <div>
             <div class="header-search">
-              <%= form_with url: search_ranks_path, method: :get %>
+              <%= form_with url: search_keyword_path, method: :get %>
                 <input class="input" name="keyword" placeholder="Search here" value="<%= params[:keyword] %>">
                 <button class="search-btn">Search</button>
               </form>
@@ -116,7 +108,7 @@
                 <div class="product-img">
                   <%= image_tag @rakuten_items[i].medium_image_urls.first || 'http://placehold.jp/262x262.png' %>
                   <div class="product-label">
-                    <% if action_name == 'index' %><span class="new"><%= i + 1 %>位</span><% end %>
+                    <% if action_name == 'category' %><span class="new"><%= i + 1 %>位</span><% end %>
                   </div>
                 </div>
                 <div class="product-body">
@@ -143,7 +135,7 @@
                 <div class="product-img">
                   <%= image_tag yahoo_shopping_item_url(@yahoo_shopping_items[i]) || 'http://placehold.jp/262x262.png' %>
                   <div class="product-label">
-                    <% if action_name == 'index' %><span class="new"><%= i + 1 %>位</span><% end %>
+                    <% if action_name == 'category' %><span class="new"><%= i + 1 %>位</span><% end %>
                   </div>
                 </div>
                 <div class="product-body">
@@ -172,7 +164,7 @@
                 <div class="product-img">
                   <%= image_tag 'http://placehold.jp/262x262.png' %>
                   <div class="product-label">
-                    <% if action_name == 'index' %><span class="new"><%= i + 1 %>位</span><% end %>
+                    <% if action_name == 'category' %><span class="new"><%= i + 1 %>位</span><% end %>
                   </div>
                 </div>
                 <div class="product-body">
@@ -251,63 +243,3 @@
   <!-- /container -->
 <!-- </div> -->
 <!-- /NEWSLETTER -->
-
-<script>
-  $(function() {
-    function buildChildHTML(child) {
-      var html = `<tr>
-                    <td><a id="${child.id}" href="/ranks?category_id=${child.id}" class="children_category">${child.name}</a></td>
-                  </tr>`;
-      return html;
-    }
-
-    $(document).on('mouseover', '.parent_category', function(e) {
-      var id = this.id
-      $(".now-selected-red").removeClass("now-selected-red")
-      $('#' + id).addClass("now-selected-red");
-      $(".children_list").html('');
-      $.ajax({
-        type: 'GET',
-        url: '/categories/new',
-        data: { parent_id: id },
-        dataType: 'json'
-      }).done(function(children) {
-        children.forEach(function (child) {
-          var html = buildChildHTML(child);
-          $(".children_list").append(html);
-        })
-      });
-    })
-
-    function buildGrandChildHTML(grand_child) {
-      var html = `<tr>
-                    <td><a id="${grand_child.id}" href="/ranks?category_id=${grand_child.id}" class="grand_children_category">${grand_child.name}</a></td>
-                  </tr>`;
-      return html;
-    }
-
-    $(document).on('mouseover', '.children_category', function(e) {
-      var id = this.id
-      $(".now-selected-red").removeClass("now-selected-red")
-      $('#' + id).addClass("now-selected-red");
-      $(".grand_children_list").html('')
-      $.ajax({
-        type: 'GET',
-        url: '/categories/new',
-        data: { parent_id: id },
-        dataType: 'json'
-      }).done(function(grand_children) {
-        grand_children.forEach(function (grand_child) {
-          var html = buildGrandChildHTML(grand_child);
-          $(".grand_children_list").append(html);
-        })
-      });
-    })
-  });
-</script>
-
-<style>
-  td {
-    width: 185px
-  }
-</style>

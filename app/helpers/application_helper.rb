@@ -8,15 +8,19 @@ module ApplicationHelper
   end
 
   def yahoo_shopping_item_url(item)
-    return item.image.medium if action_name == 'search'
+    return item.image.medium if action_name == 'keyword'
 
     item.Image.Medium
   end
 
   def yahoo_shopping_item_price(item)
-    return item.price if action_name == 'search'
+    return item.price if action_name == 'keyword'
 
     item = yahoo_shopping_item_info(item.Code)
-    item.Hit.Price
+    item&.Hit&.Price
+  end
+
+  def categories_breadcrumb(category)
+    category.path.map(&:name).join(' / ') if category.present?
   end
 end
