@@ -1,7 +1,7 @@
 require 'csv'
 
 CSV.generate do |csv|
-  column_names = %w(id, name, rakuten_id, yahoo_id, ancestry)
+  column_names = %w(id name rakuten_id yahoo_id ancestry)
   csv << column_names
   @categories.each do |category|
     column_values = [
