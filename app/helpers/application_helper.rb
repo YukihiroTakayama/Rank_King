@@ -21,6 +21,11 @@ module ApplicationHelper
   end
 
   def categories_breadcrumb(category)
-    category.path.map(&:name).join(' / ') if category.present?
+    return if category.nil?
+
+    categoriy_paths = category.path.map do |c|
+      link_to c.name, search_category_path(category_id: c.id)
+    end
+    categoriy_paths.join(' / ').html_safe
   end
 end
