@@ -1,4 +1,4 @@
-class Admin::ApplicationController < ActionController::Base
+class Admin::ApplicationController < ApplicationController
   before_action :basic_auth, if: :production?
 
   def production?

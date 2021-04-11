@@ -9,5 +9,10 @@ Rails.application.routes.draw do
       patch 'bulk_update', on: :collection
       post 'import', on: :collection
     end
+    resources :meta_tags, only: [:index, :create, :destroy] do
+      patch 'bulk_update', on: :collection
+      post 'import', on: :collection
+      post 'add_property'
+    end
   end
 end

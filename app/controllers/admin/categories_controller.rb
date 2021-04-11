@@ -1,10 +1,11 @@
 class Admin::CategoriesController < Admin::ApplicationController
   def index
-    @categories = Category.all
     respond_to do |format|
       format.html do
+        @root_categories = Category.roots
       end
       format.csv do
+        @categories = Category.all
       end
     end
   end
@@ -25,6 +26,6 @@ class Admin::CategoriesController < Admin::ApplicationController
   private
 
   def categories_params
-    params.permit(categories: [:rakuten_id, :yahoo_id])[:categories]
+    params.permit(categories: [:name, :rakuten_id, :yahoo_id])[:categories]
   end
 end

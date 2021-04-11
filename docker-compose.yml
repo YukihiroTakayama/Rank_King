@@ -15,7 +15,7 @@ services:
     build:
       context: .
       dockerfile: appDockerfile
-    command: bash -c "yarn install && bundle install && bundle exec rails db:create db:migrate && bundle exec rails server"
+    command: bash -c "yarn install && bundle update && bundle install && bundle exec rails db:create db:migrate && bundle exec rails server"
     volumes:
       - .:/rank_king
       - public:/rank_king/public

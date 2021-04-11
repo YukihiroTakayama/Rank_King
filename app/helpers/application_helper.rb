@@ -28,4 +28,12 @@ module ApplicationHelper
     end
     categoriy_paths.join(' / ').html_safe
   end
+
+  def meta_tags
+    meta_tags = MetaTag.all.map do |meta_tag|
+      properties = meta_tag.properties.map { |property| "#{property.name}=#{property.value}" }.join(' ')
+      "<meta name=#{meta_tag.name} #{properties}>"
+    end
+    meta_tags.join("\n").html_safe
+  end
 end

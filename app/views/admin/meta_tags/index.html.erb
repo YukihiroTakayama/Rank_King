@@ -1,0 +1,45 @@
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <%= form_with url: import_admin_meta_tags_path do |f| %>
+        <%= f.file_field :file %>
+        <%= submit_tag "インポート" %>
+      <% end %>
+      <%= button_to 'エクスポート', admin_meta_tags_path(format: :csv), method: :get %>
+      <%= button_to 'タグ追加', admin_meta_tags_path, method: :post %>
+      <%= form_with url: bulk_update_admin_meta_tags_path, method: :patch do |f| %>
+        <table>
+          <tbody>
+            <% @meta_tags.each do |meta_tag| %>
+              <tr>
+                <%= f.fields_for "meta_tags[]", meta_tag do |ff| %>
+                  <td>
+                    <%= '<meta ' %>
+                    name="<%= ff.text_field :name, value: meta_tag.name %>"
+                    <% meta_tag.properties.each.with_index(1) do |property, i| %>
+                      <%= ff.hidden_field :id, value: property.id, name: "[meta_tags][#{meta_tag.id}][[properties_attributes][#{property.id}][id]]" %>
+                      <%= ff.text_field "[properties_attributes][#{property.id}][name]", value: property.name %>="<%= ff.text_field "[properties_attributes][#{property.id}][value]", value: property.value %>"
+                    <% end %>
+                    >
+                  </td>
+                <% end %>
+                <td><button><%= link_to '属性追加', admin_meta_tag_add_property_path(meta_tag.id), method: :post %></button></td>
+                <td><button><%= link_to '削除', admin_meta_tag_path(meta_tag), method: :delete %></button></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= f.submit '更新' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<style>
+  td {
+    vertical-align: top;
+  }
+</style>
