@@ -18,7 +18,6 @@ services:
     command: bash -c "yarn install && bundle update && bundle install && bundle exec rails db:create db:migrate && bundle exec rails server"
     volumes:
       - .:/rank_king
-      - public:/rank_king/public
       - tmp:/rank_king/tmp
       - log:/rank_king/log
     ports:
@@ -32,7 +31,6 @@ services:
       context: .
       dockerfile: webDockerfile
     volumes:
-      - public:/rank_king/public
       - tmp:/rank_king/tmp
       - certs:/etc/letsencrypt
       - certs-data:/var/lib/letsencrypt
